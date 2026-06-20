@@ -231,3 +231,76 @@ footer{border-top:1px solid var(--line);padding:46px 0 120px;background:var(--bg
   .hero-stats{gap:24px}
   .info-card,.hours-card,.why-card{padding:28px}
 }
+
+/* ====================================================================
+   GALLERY (Realizacje) — main stage + thumbnail strip + lightbox
+   ==================================================================== */
+.gallery{background:var(--bg)}
+.stage{position:relative;max-width:980px;margin:0 auto;border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--line);background:#0a0d0a;box-shadow:var(--shadow)}
+.stage-track{position:relative;aspect-ratio:16/10;width:100%}
+.gallery .stage-track{aspect-ratio:4/3}
+.stage-track .slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;display:flex;align-items:center;justify-content:center;cursor:zoom-in}
+.stage-track .slide.active{opacity:1}
+.stage-track .slide img{width:100%;height:100%;object-fit:contain;background:#0a0d0a}
+/* placeholder shown until real files are dropped in */
+.ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,#0e150e,#0a0d0a);color:#2e4a2e}
+.ph .ph-n{font-family:'Rajdhani';font-size:2.4rem;font-weight:700;color:#2c3a2c}
+.ph small{color:#3a4a3a;font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
+.ph.ph-video{cursor:pointer}
+.stage-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:50px;height:50px;border-radius:50%;
+  border:1px solid var(--line);background:rgba(7,9,7,.7);backdrop-filter:blur(8px);color:#fff;font-size:1.5rem;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s}
+.stage-arrow:hover{background:var(--green);color:#04120a;border-color:var(--green)}
+.stage-arrow.prev{left:14px}.stage-arrow.next{right:14px}
+.stage-counter{position:absolute;bottom:14px;right:16px;z-index:3;background:rgba(7,9,7,.78);backdrop-filter:blur(8px);
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.82rem;font-weight:600;color:#fff}
+.thumbs{display:flex;gap:10px;justify-content:safe center;overflow-x:auto;padding:18px 4px 6px;max-width:980px;margin:0 auto;scrollbar-width:thin;
+  scrollbar-color:var(--green-deep) transparent}
+.thumbs::-webkit-scrollbar{height:7px}
+.thumbs::-webkit-scrollbar-thumb{background:var(--green-deep);border-radius:99px}
+.thumb{flex:0 0 92px;height:64px;border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid transparent;
+  opacity:.55;transition:.25s;background:#0e150e}
+.thumb:hover{opacity:.85}
+.thumb.active{opacity:1;border-color:var(--green)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb .ph{gap:0}.thumb .ph-n{font-size:1.1rem}.thumb .ph small{display:none}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(4,6,4,.94);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.lightbox.open{display:flex;opacity:1}
+.lightbox img{max-width:92vw;max-height:86vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.lb-close{position:absolute;top:22px;right:26px;font-size:2rem;color:#fff;cursor:pointer;background:none;border:0;line-height:1;opacity:.8;transition:.2s}
+.lb-close:hover{opacity:1;color:var(--green)}
+.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.4);color:#fff;font-size:1.7rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.25s}
+.lb-arrow:hover{background:var(--green);color:#04120a;border-color:var(--green)}
+.lb-arrow.prev{left:18px}.lb-arrow.next{right:18px}
+.lb-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-weight:600;
+  background:rgba(0,0,0,.5);border-radius:999px;padding:7px 16px;font-size:.85rem}
+
+/* ====================================================================
+   VIDEOS (Filmy)
+   ==================================================================== */
+.videos{background:var(--bg-2)}
+/* video slides reuse the .stage / .thumbs structure */
+.stage-video .stage-track{aspect-ratio:16/9}
+.stage-track .slide.slide-v{cursor:default}
+.stage-track .slide video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.ph-video .play{width:64px;height:64px;border-radius:50%;background:rgba(63,210,63,.15);
+  border:1px solid rgba(63,210,63,.4);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--green);margin-bottom:6px}
+/* video thumbnail: show poster with a small play badge */
+.thumb.thumb-v{position:relative}
+.thumb.thumb-v::after{content:"▶";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.8);pointer-events:none}
+
+@media(max-width:900px){
+  .stage-arrow{width:42px;height:42px;font-size:1.2rem}
+  .stage-video .stage-track{aspect-ratio:4/3}
+}
+@media(max-width:560px){
+  .thumb{flex-basis:76px;height:54px}
+}
