@@ -240,8 +240,8 @@ footer{border-top:1px solid var(--line);padding:46px 0 120px;background:var(--bg
   border:1px solid var(--line);background:#0a0d0a;box-shadow:var(--shadow)}
 .stage-track{position:relative;aspect-ratio:16/10;width:100%}
 .gallery .stage-track{aspect-ratio:4/3}
-.stage-track .slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;display:flex;align-items:center;justify-content:center;cursor:zoom-in}
-.stage-track .slide.active{opacity:1}
+.stage-track .slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .5s ease;display:flex;align-items:center;justify-content:center;cursor:zoom-in}
+.stage-track .slide.active{opacity:1;pointer-events:auto;z-index:2}
 .stage-track .slide img{width:100%;height:100%;object-fit:contain;background:#0a0d0a}
 /* placeholder shown until real files are dropped in */
 .ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
